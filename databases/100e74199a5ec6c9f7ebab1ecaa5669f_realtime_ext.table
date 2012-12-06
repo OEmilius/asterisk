@@ -1,0 +1,71 @@
+(dp1
+S'priority'
+p2
+(dp3
+S'type'
+p4
+S'integer'
+p5
+sS'sortable'
+p6
+I3
+sS'sql'
+p7
+S'INT NOT NULL'
+p8
+ssS'context'
+p9
+(dp10
+g4
+S'string'
+p11
+sg6
+I1
+sg7
+S'VARCHAR(20) NOT NULL'
+p12
+ssS'appdata'
+p13
+(dp14
+g4
+g11
+sg6
+I5
+sg7
+S'VARCHAR(128) NOT NULL'
+p15
+ssS'exten'
+p16
+(dp17
+g4
+g11
+sg6
+I2
+sg7
+S'VARCHAR(20) NOT NULL'
+p18
+ssS'app'
+p19
+(dp20
+g4
+g11
+sg6
+I4
+sg7
+S'VARCHAR(20) NOT NULL'
+p21
+ssS'id'
+p22
+(dp23
+S'type'
+p24
+S'id'
+p25
+sS'sortable'
+p26
+I1
+sS'sql'
+p27
+S'INT AUTO_INCREMENT NOT NULL'
+p28
+ss.

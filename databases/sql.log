@@ -1,0 +1,552 @@
+timestamp: 2012-09-03T16:17:33.562319
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2012-09-03T16:17:33.575742
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2012-09-03T16:17:33.579243
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2012-09-03T16:17:33.583339
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2012-09-03T16:17:33.587620
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2012-09-03T16:17:33.592092
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2012-10-09T10:25:10.459331
+CREATE TABLE auth_user(
+    id INT AUTO_INCREMENT NOT NULL,
+    first_name VARCHAR(128),
+    last_name VARCHAR(128),
+    email VARCHAR(255),
+    password VARCHAR(255),
+    registration_key VARCHAR(255),
+    reset_password_key VARCHAR(255),
+    registration_id VARCHAR(255),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2012-10-09T10:25:10.495326
+CREATE TABLE auth_group(
+    id INT AUTO_INCREMENT NOT NULL,
+    role VARCHAR(255),
+    description LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2012-10-09T10:25:10.499881
+CREATE TABLE auth_membership(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INT, INDEX group_id__idx (group_id), FOREIGN KEY (group_id) REFERENCES auth_group (id) ON DELETE CASCADE,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2012-10-09T10:25:10.505226
+CREATE TABLE auth_permission(
+    id INT AUTO_INCREMENT NOT NULL,
+    group_id INT, INDEX group_id__idx (group_id), FOREIGN KEY (group_id) REFERENCES auth_group (id) ON DELETE CASCADE,
+    name VARCHAR(255),
+    table_name VARCHAR(255),
+    record_id INT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2012-10-09T10:25:10.510237
+CREATE TABLE auth_event(
+    id INT AUTO_INCREMENT NOT NULL,
+    time_stamp DATETIME,
+    client_ip VARCHAR(255),
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin VARCHAR(255),
+    description LONGTEXT,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2012-10-09T10:25:10.514738
+CREATE TABLE auth_cas(
+    id INT AUTO_INCREMENT NOT NULL,
+    user_id INT, INDEX user_id__idx (user_id), FOREIGN KEY (user_id) REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on DATETIME,
+    service VARCHAR(255),
+    ticket VARCHAR(255),
+    renew CHAR(1),
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2012-10-09T11:16:55.589160
+CREATE TABLE sip_conf(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(80) NOT NULL UNIQUE,
+    host VARCHAR(31) NOT NULL DEFAULT 'dynamic',
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2012-10-09T12:03:01.115401
+ALTER TABLE sip_conf ADD context VARCHAR(80);
+success!
+timestamp: 2012-10-09T12:03:01.123569
+ALTER TABLE sip_conf ADD fullcontact VARCHAR(80) NOT NULL DEFAULT '';
+success!
+timestamp: 2012-10-09T12:03:01.130199
+ALTER TABLE sip_conf ADD amaflags VARCHAR(13);
+success!
+timestamp: 2012-10-09T12:03:01.135965
+ALTER TABLE sip_conf ADD restrictcid VARCHAR(3);
+success!
+timestamp: 2012-10-09T12:03:01.143773
+ALTER TABLE sip_conf ADD callgroup VARCHAR(10);
+success!
+timestamp: 2012-10-09T12:03:01.149382
+ALTER TABLE sip_conf ADD port INT NOT NULL DEFAULT 0;
+success!
+timestamp: 2012-10-09T12:03:01.155488
+ALTER TABLE sip_conf ADD musiconhold VARCHAR(100);
+success!
+timestamp: 2012-10-09T12:03:01.161338
+ALTER TABLE sip_conf ADD regseconds INT NOT NULL DEFAULT 0;
+success!
+timestamp: 2012-10-09T12:03:01.169729
+ALTER TABLE sip_conf ADD defaultuser VARCHAR(80) NOT NULL;
+success!
+timestamp: 2012-10-09T12:03:01.176333
+ALTER TABLE sip_conf ADD callerid VARCHAR(80);
+success!
+timestamp: 2012-10-09T12:03:01.182251
+ALTER TABLE sip_conf ADD ipaddr VARCHAR(15) NOT NULL DEFAULT '';
+success!
+timestamp: 2012-10-09T12:03:01.191155
+ALTER TABLE sip_conf ADD fromdomain VARCHAR(80);
+success!
+timestamp: 2012-10-09T12:03:01.197585
+ALTER TABLE sip_conf ADD md5secret VARCHAR(80);
+success!
+timestamp: 2012-10-09T12:03:01.203419
+ALTER TABLE sip_conf ADD secret VARCHAR(80);
+success!
+timestamp: 2012-10-09T12:03:01.210464
+ALTER TABLE sip_conf ADD nat VARCHAR(5) NOT NULL DEFAULT 'no';
+success!
+timestamp: 2012-10-09T12:03:01.220130
+ALTER TABLE sip_conf ADD qualify VARCHAR(3);
+success!
+timestamp: 2012-10-09T12:03:01.226830
+ALTER TABLE sip_conf ADD type VARCHAR(7) NOT NULL DEFAULT 'friend';
+success!
+timestamp: 2012-10-09T12:03:01.347522
+ALTER TABLE sip_conf ADD setvar VARCHAR(100);
+success!
+timestamp: 2012-10-09T12:03:01.353770
+ALTER TABLE sip_conf ADD username VARCHAR(80) NOT NULL;
+success!
+timestamp: 2012-10-09T12:03:01.359982
+ALTER TABLE sip_conf ADD regserver VARCHAR(100);
+success!
+timestamp: 2012-10-09T12:03:01.366169
+ALTER TABLE sip_conf ADD insecure VARCHAR(4);
+success!
+timestamp: 2012-10-09T12:03:01.372385
+ALTER TABLE sip_conf ADD rtpholdtimeout VARCHAR(3);
+success!
+timestamp: 2012-10-09T12:03:01.378886
+ALTER TABLE sip_conf ADD mailbox VARCHAR(50);
+success!
+timestamp: 2012-10-09T12:03:01.385862
+ALTER TABLE sip_conf ADD defaultip VARCHAR(15);
+success!
+timestamp: 2012-10-09T12:03:01.392477
+ALTER TABLE sip_conf ADD cancallforward VARCHAR(3);
+success!
+timestamp: 2012-10-09T12:03:01.398967
+ALTER TABLE sip_conf ADD disallow VARCHAR(100);
+success!
+timestamp: 2012-10-09T12:03:01.405513
+ALTER TABLE sip_conf ADD accountcode VARCHAR(20);
+success!
+timestamp: 2012-10-09T12:03:01.412154
+ALTER TABLE sip_conf ADD deny VARCHAR(95);
+success!
+timestamp: 2012-10-09T12:03:01.418833
+ALTER TABLE sip_conf ADD dtmfmode VARCHAR(8);
+success!
+timestamp: 2012-10-09T12:03:01.426309
+ALTER TABLE sip_conf ADD language VARCHAR(2);
+success!
+timestamp: 2012-10-09T12:03:01.433291
+ALTER TABLE sip_conf ADD mask VARCHAR(95);
+success!
+timestamp: 2012-10-09T12:03:01.471748
+ALTER TABLE sip_conf ADD rtptimeout VARCHAR(3);
+success!
+timestamp: 2012-10-09T12:03:01.479902
+ALTER TABLE sip_conf ADD pickupgroup VARCHAR(10);
+success!
+timestamp: 2012-10-09T12:03:01.487482
+ALTER TABLE sip_conf ADD canreinvite VARCHAR(3);
+success!
+timestamp: 2012-10-09T12:03:01.495593
+ALTER TABLE sip_conf ADD allow VARCHAR(100);
+success!
+timestamp: 2012-10-09T12:03:01.503500
+ALTER TABLE sip_conf ADD permit VARCHAR(95);
+success!
+timestamp: 2012-10-09T12:03:01.511309
+ALTER TABLE sip_conf ADD fromuser VARCHAR(80);
+success!
+timestamp: 2012-10-09T12:03:01.518842
+ALTER TABLE sip_conf ADD regexten VARCHAR(80);
+success!
+timestamp: 2012-10-09T12:08:05.760419
+CREATE TABLE sip_conf2(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(80) NOT NULL UNIQUE,
+    host VARCHAR(31) NOT NULL DEFAULT 'dynamic',
+    nat VARCHAR(5) NOT NULL DEFAULT 'no',
+    type VARCHAR(7) NOT NULL DEFAULT 'friend',
+    accountcode VARCHAR(20),
+    amaflags VARCHAR(13),
+    callgroup VARCHAR(10),
+    callerid VARCHAR(80),
+    cancallforward VARCHAR(3),
+    canreinvite VARCHAR(3),
+    context VARCHAR(80),
+    defaultip VARCHAR(15),
+    dtmfmode VARCHAR(8),
+    fromuser VARCHAR(80),
+    fromdomain VARCHAR(80),
+    insecure VARCHAR(4),
+    language VARCHAR(2),
+    mailbox VARCHAR(50),
+    md5secret VARCHAR(80),
+    deny VARCHAR(95),
+    permit VARCHAR(95),
+    mask VARCHAR(95),
+    musiconhold VARCHAR(100),
+    pickupgroup VARCHAR(10),
+    qualify VARCHAR(3),
+    regexten VARCHAR(80),
+    restrictcid VARCHAR(3),
+    rtptimeout VARCHAR(3),
+    rtpholdtimeout VARCHAR(3),
+    secret VARCHAR(80),
+    setvar VARCHAR(100),
+    disallow VARCHAR(100),
+    allow VARCHAR(100),
+    fullcontact VARCHAR(80) NOT NULL DEFAULT '',
+    ipaddr VARCHAR(15) NOT NULL DEFAULT '',
+    port INT NOT NULL DEFAULT 0,
+    regserver VARCHAR(100),
+    regseconds INT NOT NULL DEFAULT 0,
+    username VARCHAR(80) NOT NULL,
+    defaultuser VARCHAR(80) NOT NULL,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2012-10-09T12:16:54.661707
+CREATE TABLE sip_conf_db(
+    id INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(80) NOT NULL UNIQUE,
+    host VARCHAR(31) NOT NULL DEFAULT 'dynamic',
+    nat VARCHAR(5) NOT NULL DEFAULT 'no',
+    type VARCHAR(7) NOT NULL DEFAULT 'friend',
+    accountcode VARCHAR(20),
+    amaflags VARCHAR(13),
+    callgroup VARCHAR(10),
+    callerid VARCHAR(80),
+    cancallforward VARCHAR(3),
+    canreinvite VARCHAR(3),
+    context VARCHAR(80),
+    defaultip VARCHAR(15),
+    dtmfmode VARCHAR(8),
+    fromuser VARCHAR(80),
+    fromdomain VARCHAR(80),
+    insecure VARCHAR(4),
+    language VARCHAR(2),
+    mailbox VARCHAR(50),
+    md5secret VARCHAR(80),
+    deny VARCHAR(95),
+    permit VARCHAR(95),
+    mask VARCHAR(95),
+    musiconhold VARCHAR(100),
+    pickupgroup VARCHAR(10),
+    qualify VARCHAR(3),
+    regexten VARCHAR(80),
+    restrictcid VARCHAR(3),
+    rtptimeout VARCHAR(3),
+    rtpholdtimeout VARCHAR(3),
+    secret VARCHAR(80),
+    setvar VARCHAR(100),
+    disallow VARCHAR(100),
+    allow VARCHAR(100),
+    fullcontact VARCHAR(80) NOT NULL DEFAULT '',
+    ipaddr VARCHAR(15) NOT NULL DEFAULT '',
+    port INT NOT NULL DEFAULT 0,
+    regserver VARCHAR(100),
+    regseconds INT NOT NULL DEFAULT 0,
+    username VARCHAR(80) NOT NULL,
+    defaultuser VARCHAR(80) NOT NULL,
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2012-10-09T12:29:42.136981
+ALTER TABLE sip_conf_db ADD fullcontact__tmp VARCHAR(80);
+success!
+UPDATE sip_conf_db SET fullcontact__tmp=fullcontact;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN fullcontact;
+success!
+ALTER TABLE sip_conf_db ADD fullcontact VARCHAR(80);
+success!
+UPDATE sip_conf_db SET fullcontact=fullcontact__tmp;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN fullcontact__tmp;
+success!
+timestamp: 2012-10-09T12:29:42.176417
+ALTER TABLE sip_conf_db ADD restrictcid__tmp INT;
+success!
+UPDATE sip_conf_db SET restrictcid__tmp=restrictcid;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN restrictcid;
+success!
+ALTER TABLE sip_conf_db ADD restrictcid INT;
+success!
+UPDATE sip_conf_db SET restrictcid=restrictcid__tmp;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN restrictcid__tmp;
+success!
+timestamp: 2012-10-09T12:29:42.231113
+ALTER TABLE sip_conf_db ADD ipaddr__tmp VARCHAR(15);
+success!
+UPDATE sip_conf_db SET ipaddr__tmp=ipaddr;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN ipaddr;
+success!
+ALTER TABLE sip_conf_db ADD ipaddr VARCHAR(15);
+success!
+UPDATE sip_conf_db SET ipaddr=ipaddr__tmp;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN ipaddr__tmp;
+success!
+timestamp: 2012-10-09T12:29:42.293292
+ALTER TABLE sip_conf_db ADD rtpholdtimeout__tmp INT;
+success!
+UPDATE sip_conf_db SET rtpholdtimeout__tmp=rtpholdtimeout;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN rtpholdtimeout;
+success!
+ALTER TABLE sip_conf_db ADD rtpholdtimeout INT;
+success!
+UPDATE sip_conf_db SET rtpholdtimeout=rtpholdtimeout__tmp;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN rtpholdtimeout__tmp;
+success!
+timestamp: 2012-10-09T12:29:42.338896
+ALTER TABLE sip_conf_db ADD rtptimeout__tmp INT;
+success!
+UPDATE sip_conf_db SET rtptimeout__tmp=rtptimeout;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN rtptimeout;
+success!
+ALTER TABLE sip_conf_db ADD rtptimeout INT;
+success!
+UPDATE sip_conf_db SET rtptimeout=rtptimeout__tmp;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN rtptimeout__tmp;
+success!
+timestamp: 2012-10-09T14:56:11.289324
+ALTER TABLE sip_conf_db ADD ipaddr__tmp VARCHAR(45);
+success!
+UPDATE sip_conf_db SET ipaddr__tmp=ipaddr;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN ipaddr;
+success!
+ALTER TABLE sip_conf_db ADD ipaddr VARCHAR(45);
+success!
+UPDATE sip_conf_db SET ipaddr=ipaddr__tmp;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN ipaddr__tmp;
+success!
+timestamp: 2012-10-09T14:56:11.357056
+ALTER TABLE sip_conf_db ADD lastms VARCHAR(11) NOT NULL;
+success!
+timestamp: 2012-10-09T14:56:11.377603
+ALTER TABLE sip_conf_db ADD useragent VARCHAR(20) NOT NULL;
+success!
+timestamp: 2012-10-09T15:04:34.929505
+ALTER TABLE sip_conf_db ADD lastms__tmp VARCHAR(11);
+success!
+UPDATE sip_conf_db SET lastms__tmp=lastms;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN lastms;
+success!
+ALTER TABLE sip_conf_db ADD lastms VARCHAR(11);
+success!
+UPDATE sip_conf_db SET lastms=lastms__tmp;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN lastms__tmp;
+success!
+timestamp: 2012-10-09T15:04:34.985194
+ALTER TABLE sip_conf_db ADD useragent__tmp VARCHAR(20);
+success!
+UPDATE sip_conf_db SET useragent__tmp=useragent;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN useragent;
+success!
+ALTER TABLE sip_conf_db ADD useragent VARCHAR(20);
+success!
+UPDATE sip_conf_db SET useragent=useragent__tmp;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN useragent__tmp;
+success!
+timestamp: 2012-10-09T15:15:03.461350
+ALTER TABLE sip_conf_db ADD qualify__tmp VARCHAR(30);
+success!
+UPDATE sip_conf_db SET qualify__tmp=qualify;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN qualify;
+success!
+ALTER TABLE sip_conf_db ADD qualify VARCHAR(30);
+success!
+UPDATE sip_conf_db SET qualify=qualify__tmp;
+success!
+ALTER TABLE sip_conf_db DROP COLUMN qualify__tmp;
+success!
+timestamp: 2012-10-09T15:15:03.522216
+ALTER TABLE sip_conf_db DROP COLUMN username;
+success!
+timestamp: 2012-10-26T15:26:48.017900
+CREATE TABLE realtime_ext(
+    context VARCHAR(20) NOT NULL DEFAULT '',
+    exten VARCHAR(20) NOT NULL DEFAULT '',
+    priority INT NOT NULL DEFAULT 0,
+    app VARCHAR(20) NOT NULL DEFAULT '',
+    appdata VARCHAR(128) NOT NULL DEFAULT '',
+    PRIMARY KEY(context, exten, priority))  ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2012-10-26T15:53:45.315279
+ALTER TABLE realtime_ext ADD id VARCHAR(255);
+success!
+timestamp: 2012-10-26T15:59:49.449192
+ALTER TABLE realtime_ext ADD idinteger VARCHAR(255);
+success!
+timestamp: 2012-10-26T16:00:21.261904
+ALTER TABLE realtime_ext DROP COLUMN idinteger;
+success!
+timestamp: 2012-10-26T16:09:33.925405
+CREATE TABLE realtime_ext3(
+    id INT AUTO_INCREMENT NOT NULL,
+    context VARCHAR(20) NOT NULL DEFAULT '',
+    exten VARCHAR(20) NOT NULL DEFAULT '',
+    priority INT NOT NULL DEFAULT 0,
+    app VARCHAR(20) NOT NULL DEFAULT '',
+    appdata VARCHAR(128) NOT NULL DEFAULT '',
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2012-10-30T16:06:48.950902
+CREATE TABLE cdr(
+    id INT AUTO_INCREMENT NOT NULL,
+    calldate DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+    clid VARCHAR(80) NOT NULL DEFAULT '',
+    src VARCHAR(80) NOT NULL DEFAULT '',
+    dst VARCHAR(80) NOT NULL DEFAULT '',
+    dcontext VARCHAR(80) NOT NULL DEFAULT '',
+    channel VARCHAR(80) NOT NULL DEFAULT '',
+    dstchannel VARCHAR(80) NOT NULL DEFAULT '',
+    lastapp VARCHAR(80) NOT NULL DEFAULT '',
+    lastdata VARCHAR(80) NOT NULL DEFAULT '',
+    duration INT NOT NULL DEFAULT 0,
+    billsec INT NOT NULL DEFAULT 0,
+    disposition VARCHAR(45) NOT NULL DEFAULT '0',
+    amaflags INT NOT NULL DEFAULT 0,
+    accountcode VARCHAR(20) NOT NULL DEFAULT '',
+    uniqueid VARCHAR(32) NOT NULL DEFAULT '',
+    userfield VARCHAR(255) NOT NULL DEFAULT '',
+    sequence INT NOT NULL DEFAULT 0,
+    linkedid VARCHAR(32) NOT NULL DEFAULT '',
+    peeraccount VARCHAR(20) NOT NULL DEFAULT '',
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+timestamp: 2012-10-30T16:10:50.071998
+CREATE TABLE cdr(
+    id INT AUTO_INCREMENT NOT NULL,
+    calldate DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+    clid VARCHAR(80) NOT NULL DEFAULT '',
+    src VARCHAR(80) NOT NULL DEFAULT '',
+    dst VARCHAR(80) NOT NULL DEFAULT '',
+    dcontext VARCHAR(80) NOT NULL DEFAULT '',
+    channel VARCHAR(80) NOT NULL DEFAULT '',
+    dstchannel VARCHAR(80) NOT NULL DEFAULT '',
+    lastapp VARCHAR(80) NOT NULL DEFAULT '',
+    lastdata VARCHAR(80) NOT NULL DEFAULT '',
+    duration INT NOT NULL DEFAULT 0,
+    billsec INT NOT NULL DEFAULT 0,
+    disposition VARCHAR(45) NOT NULL DEFAULT '0',
+    amaflags INT NOT NULL DEFAULT 0,
+    accountcode VARCHAR(20) NOT NULL DEFAULT '',
+    uniqueid VARCHAR(32) NOT NULL DEFAULT '',
+    userfield VARCHAR(255) NOT NULL DEFAULT '',
+    sequence INT NOT NULL DEFAULT 0,
+    linkedid VARCHAR(32) NOT NULL DEFAULT '',
+    peeraccount VARCHAR(20) NOT NULL DEFAULT '',
+    PRIMARY KEY(id)
+) ENGINE=InnoDB CHARACTER SET utf8;
+success!
+timestamp: 2012-10-31T13:07:51.027509
+ALTER TABLE sip_conf_db ADD allowsubscribe VARCHAR(3);
+success!
+timestamp: 2012-10-31T13:07:51.659636
+ALTER TABLE sip_conf_db ADD subscribecontext VARCHAR(80);
+success!
+timestamp: 2012-10-31T18:16:02.462946
+ALTER TABLE sip_conf_db ADD notifyringing VARCHAR(10);
+success!
+timestamp: 2012-10-31T18:16:02.813967
+ALTER TABLE sip_conf_db ADD notifyhold VARCHAR(10);
+success!
+timestamp: 2012-10-31T18:24:25.223075
+ALTER TABLE sip_conf_db ADD notifycid VARCHAR(10);
+success!
+timestamp: 2012-10-31T18:33:09.401087
+ALTER TABLE sip_conf_db ADD subscribemwi VARCHAR(10);
+success!

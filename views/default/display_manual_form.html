@@ -1,0 +1,12 @@
+{{extend 'layout.html'}}
+<h1>Это шаблон default/display_manual_form.html</h1>
+<form enctype="multipart/form-data" method="post">
+<ul>
+    <li> sip name <input name="name" /></li>
+    <li> host <input name="host" /></li>
+</ul>
+    <input type="submit" />
+    <input type="hidden" name="_formname" value="test_form" />
+</form>
+
+{{=BEAUTIFY(response._vars)}}

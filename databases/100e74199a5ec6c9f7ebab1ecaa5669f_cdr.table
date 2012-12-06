@@ -1,0 +1,208 @@
+(dp1
+S'peeraccount'
+p2
+(dp3
+S'type'
+p4
+S'string'
+p5
+sS'sortable'
+p6
+I20
+sS'sql'
+p7
+S'VARCHAR(20) NOT NULL'
+p8
+ssS'src'
+p9
+(dp10
+g4
+g5
+sg6
+I4
+sg7
+S'VARCHAR(80) NOT NULL'
+p11
+ssS'userfield'
+p12
+(dp13
+g4
+g5
+sg6
+I17
+sg7
+S'VARCHAR(255) NOT NULL'
+p14
+ssS'calldate'
+p15
+(dp16
+g4
+S'datetime'
+p17
+sg6
+I2
+sg7
+S'DATETIME NOT NULL'
+p18
+ssS'uniqueid'
+p19
+(dp20
+g4
+g5
+sg6
+I16
+sg7
+S'VARCHAR(32) NOT NULL'
+p21
+ssS'amaflags'
+p22
+(dp23
+g4
+S'integer'
+p24
+sg6
+I14
+sg7
+S'INT NOT NULL'
+p25
+ssS'accountcode'
+p26
+(dp27
+g4
+g5
+sg6
+I15
+sg7
+S'VARCHAR(20) NOT NULL'
+p28
+ssS'dst'
+p29
+(dp30
+g4
+g5
+sg6
+I5
+sg7
+S'VARCHAR(80) NOT NULL'
+p31
+ssS'sequence'
+p32
+(dp33
+g4
+g24
+sg6
+I18
+sg7
+S'INT NOT NULL'
+p34
+ssS'dcontext'
+p35
+(dp36
+g4
+g5
+sg6
+I6
+sg7
+S'VARCHAR(80) NOT NULL'
+p37
+ssS'lastapp'
+p38
+(dp39
+g4
+g5
+sg6
+I9
+sg7
+S'VARCHAR(80) NOT NULL'
+p40
+ssS'linkedid'
+p41
+(dp42
+g4
+g5
+sg6
+I19
+sg7
+S'VARCHAR(32) NOT NULL'
+p43
+ssS'lastdata'
+p44
+(dp45
+g4
+g5
+sg6
+I10
+sg7
+S'VARCHAR(80) NOT NULL'
+p46
+ssS'clid'
+p47
+(dp48
+g4
+g5
+sg6
+I3
+sg7
+S'VARCHAR(80) NOT NULL'
+p49
+ssS'disposition'
+p50
+(dp51
+g4
+g5
+sg6
+I13
+sg7
+S'VARCHAR(45) NOT NULL'
+p52
+ssS'duration'
+p53
+(dp54
+g4
+g24
+sg6
+I11
+sg7
+S'INT NOT NULL'
+p55
+ssS'billsec'
+p56
+(dp57
+g4
+g24
+sg6
+I12
+sg7
+S'INT NOT NULL'
+p58
+ssS'dstchannel'
+p59
+(dp60
+g4
+g5
+sg6
+I8
+sg7
+S'VARCHAR(80) NOT NULL'
+p61
+ssS'id'
+p62
+(dp63
+g4
+g62
+sg6
+I1
+sg7
+S'INT AUTO_INCREMENT NOT NULL'
+p64
+ssS'channel'
+p65
+(dp66
+g4
+g5
+sg6
+I7
+sg7
+S'VARCHAR(80) NOT NULL'
+p67
+ss.
